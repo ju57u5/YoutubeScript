@@ -105,7 +105,7 @@ aparser.add_argument('-f', '--format', type=lambda x: checkFormats(aparser,x), d
 aparser.add_argument('-n', '--name', dest='name', action="store", default="none", help='Name of the downloaded Video without Fileext.')
 aparser.add_argument('videourl', metavar='url', action="store", help='URL of the Video or Playlist')
 aparser.add_argument('-pl', '--playlist', dest='playlist', action="store_true", help='Downloads Playlist')
-aparser.add_argument('-no', '--startno', dest='startno', action="store", type=int, default=0, help='Starting Number, if downloading Playlist')
+aparser.add_argument('-no', '--startno', dest='startno', action="store", type=int, default=1, help='Starting Number, if downloading Playlist')
 
 args = aparser.parse_args()
 
