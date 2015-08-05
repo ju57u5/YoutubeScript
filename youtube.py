@@ -60,6 +60,9 @@ def downloadvideo(url,name,vformat):
 def getVideoID(url):
 	url_data = urlparse.urlparse(url)
 	query = urlparse.parse_qs(url_data.query)
+	if not "v" in query:
+		print 'Video Url is not valid!'
+		sys.exit(1)
 	video = query["v"][0]
 	return video
 def getPlaylistID(url):
@@ -70,7 +73,6 @@ def getPlaylistID(url):
 
 def getPlaylistVideos(url):
 	html = openUrl('http://www.youtube.com/playlist?list='+getPlaylistID(url))
-	#links = re.findall('watch\?v=.{16}index=([1-9][0-9]*)&amp;list',html.rstrip('\n'))
 	links = re.findall('watch\?v=.{16}',html.rstrip('\n'))
 	for i,entry in enumerate(links):
 		links[i] = 'http://www.youtube.com/watch?v=' + stringbetween(entry,'watch?v=','&amp;')
@@ -78,15 +80,19 @@ def getPlaylistVideos(url):
 		print 'Couldnt read Playlist. Try again!'
 		sys.exit(1)
 	return links
-	
+def checkFormats(parser,x):
+	formats = ['mp3','m4a','acc','flac','ogg','wma','mp4','avi','wmv','3gp']
+	if not (x in formats):
+		parser.error("Format must be: "+' '.join(formats))
 
 aparser = argparse.ArgumentParser(description='Download Youtube Videos and Playlists.')
-aparser.add_argument('-f', '--format', dest='format', action="store", default="mp3", help='Format of the downloaded Videos(see convert2mp3.net)')
+aparser.add_argument('-f', '--format', type=lambda x: checkFormats(aparser,x), dest='format', action="store", default="mp3", help='Format of the downloaded Videos(see convert2mp3.net)')
 aparser.add_argument('-n', '--name', dest='name', action="store", default="none", help='Name of the downloaded Video without Fileext.')
 aparser.add_argument('videourl', metavar='url', action="store", help='URL of the Video or Playlist')
-
 args = aparser.parse_args()
-print getPlaylistVideos(args.videourl)
+
+checkFormats(args.format)
+plvideos = getPlaylistVideos(args.videourl)
 
 if (args.name == 'none'):
 	downloadvideo(args.videourl,getVideoID(args.videourl)+'.'+args.format,args.format)
