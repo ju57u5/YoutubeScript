@@ -53,7 +53,7 @@ def downloadvideo(url,name,vformat):
 	split = urlparse.urlsplit(downloadurl)
 	if not os.path.exists(os.path.dirname(os.path.realpath(__file__))+ "\\download"):
 	    os.makedirs(os.path.dirname(os.path.realpath(__file__))+ "\\download")
-	filename = os.path.dirname(os.path.realpath(__file__))+ "\\download\\" + name
+	filename = os.path.dirname(os.path.realpath(__file__))+ "\\download\\" + name +"."+vformat
 	mechanize.urlretrieve(downloadurl, filename)
 	return
 
@@ -80,21 +80,38 @@ def getPlaylistVideos(url):
 		print 'Couldnt read Playlist. Try again!'
 		sys.exit(1)
 	return links
+
 def checkFormats(parser,x):
 	formats = ['mp3','m4a','acc','flac','ogg','wma','mp4','avi','wmv','3gp']
 	if not (x in formats):
 		parser.error("Format must be: "+' '.join(formats))
+	else :
+		return x
+
+def dlplaylist(args):
+	plvideos = getPlaylistVideos(args.videourl)
+	prefix = ''
+	if args.name == 'none':
+		prefix = getPlaylistID(args.videourl)
+	else :
+		prefix = args.name
+
+	for i,entry in enumerate(plvideos):
+		downloadvideo(entry, str(i+args.startno)+" "+prefix, args.format)
+	return
 
 aparser = argparse.ArgumentParser(description='Download Youtube Videos and Playlists.')
 aparser.add_argument('-f', '--format', type=lambda x: checkFormats(aparser,x), dest='format', action="store", default="mp3", help='Format of the downloaded Videos(see convert2mp3.net)')
 aparser.add_argument('-n', '--name', dest='name', action="store", default="none", help='Name of the downloaded Video without Fileext.')
 aparser.add_argument('videourl', metavar='url', action="store", help='URL of the Video or Playlist')
+aparser.add_argument('-pl', '--playlist', dest='playlist', action="store_true", help='Downloads Playlist')
+aparser.add_argument('-no', '--startno', dest='startno', action="store", type=int, default=0, help='Starting Number, if downloading Playlist')
+
 args = aparser.parse_args()
 
-checkFormats(args.format)
-plvideos = getPlaylistVideos(args.videourl)
-
-if (args.name == 'none'):
-	downloadvideo(args.videourl,getVideoID(args.videourl)+'.'+args.format,args.format)
+if args.playlist:
+	dlplaylist(args)
+elif (args.name == 'none'):
+	downloadvideo(args.videourl,getVideoID(args.videourl),args.format)
 else:
-	downloadvideo(args.videourl,args.name+'.'+args.format,args.format)
+	downloadvideo(args.videourl,args.name,args.format)
