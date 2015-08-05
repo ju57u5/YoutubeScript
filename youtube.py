@@ -71,6 +71,10 @@ def getPlaylistID(url):
 	plid = query["list"][0]
 	return plid
 
+def unique(a):
+    seen = set()
+    return [seen.add(x) or x for x in a if x not in seen]
+
 def getPlaylistVideos(url):
 	html = openUrl('http://www.youtube.com/playlist?list='+getPlaylistID(url))
 	links = re.findall('watch\?v=.{16}',html.rstrip('\n'))
@@ -79,7 +83,7 @@ def getPlaylistVideos(url):
 	if not links:
 		print 'Couldnt read Playlist. Try again!'
 		sys.exit(1)
-	return links
+	return unique(links)
 
 def checkFormats(parser,x):
 	formats = ['mp3','m4a','acc','flac','ogg','wma','mp4','avi','wmv','3gp']
@@ -110,6 +114,7 @@ aparser.add_argument('-no', '--startno', dest='startno', action="store", type=in
 args = aparser.parse_args()
 
 if args.playlist:
+	#print getPlaylistVideos(args.videourl)
 	dlplaylist(args)
 elif (args.name == 'none'):
 	downloadvideo(args.videourl,getVideoID(args.videourl),args.format)
