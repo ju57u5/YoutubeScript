@@ -8,19 +8,18 @@ Download Youtube Videos and Playlists.
 
 positional arguments:<br>
 Argument|Description
---------------------------------|--------------------------------------------------------
-  url                           | URL of the Video or Playlist
+|-------------------------------|--------------------------------------------------------
+|  url                           | URL of the Video or Playlist
 
 optional arguments:<br>
-Flag|Description
---------------------------------|--------------------------------------------------------
-  -h, --help                    |  show this help message and exit
-  -f FORMAT, --format FORMAT    |  format of the downloaded videos(see convert2mp3.net)
-  -n NAME, --name NAME          |  name of the downloaded video without fileextension
-  -pl, --playlist               |  downloads playlist
-  -no STARTNO, --startno STARTNO|  starting number of naming, if downloading Playlist
-  -s START, --start START       |  starting number, if downloading Playlist
-  -e END, --end END             |  ending number, if downloading Playlist
-  
+|  Flag							|  Description
+|  -----------------------------|------------------------------------------------------ 
+|  -h, --help                    |  show this help message and exit
+|  -f FORMAT, --format FORMAT    |  format of the downloaded videos(see convert2mp3.net)
+|  -n NAME, --name NAME          |  name of the downloaded video without fileextension
+|  -pl, --playlist               |  downloads playlist
+|  -no STARTNO, --startno STARTNO|  starting number of naming, if downloading Playlist
+|  -s START, --start START       |  starting number, if downloading Playlist
+|  -e END, --end END             |  ending number, if downloading Playlist
   
   
