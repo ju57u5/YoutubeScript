@@ -25,9 +25,9 @@ Argument|Description
 
 #Examples
 ```
-ytdl.py -n pietcast -s 5 -e 8 -pl https://www.youtube.com/playlist?list=PL5JK9SjdCJp_oIlCBbnANeOvT8yuCxBbu
+ytdl.py -no 24 -n pietcast -s 5 -e 8 -pl https://www.youtube.com/playlist?list=PL5JK9SjdCJp_oIlCBbnANeOvT8yuCxBbu
 ```
-Downloads episodes 5 to 8 from "PietCast" and names them <number> pietcast.mp3.
+Downloads episodes 5 to 8 from "PietCast" and names them "100+%number pietcast.mp3".
 
 ```
 ytdl.py -f mp4 -n ytrewind2008 https://www.youtube.com/watch?v=zKx2B8WCQuw
