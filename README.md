@@ -14,13 +14,13 @@ Argument|Description
 optional arguments:<br>
 Flag|Description
 --------------------------------|--------------------------------------------------------
-  -h, --help                    |  show this help message and exit<br>
-  -f FORMAT, --format FORMAT    |  format of the downloaded videos(see convert2mp3.net)<br>
-  -n NAME, --name NAME          |  name of the downloaded video without fileextension<br>
-  -pl, --playlist               |  downloads playlist<br>
-  -no STARTNO, --startno STARTNO|  starting number of naming, if downloading Playlist<br>
-  -s START, --start START       |  starting number, if downloading Playlist<br>
-  -e END, --end END             |  ending number, if downloading Playlist<br>
+  -h, --help                    |  show this help message and exit
+  -f FORMAT, --format FORMAT    |  format of the downloaded videos(see convert2mp3.net)
+  -n NAME, --name NAME          |  name of the downloaded video without fileextension
+  -pl, --playlist               |  downloads playlist
+  -no STARTNO, --startno STARTNO|  starting number of naming, if downloading Playlist
+  -s START, --start START       |  starting number, if downloading Playlist
+  -e END, --end END             |  ending number, if downloading Playlist
   
   
   
