@@ -50,6 +50,7 @@ def downloadvideo(url,name,vformat):
 	html2 = '1'
 	while not "3" in html2 :
 		html2 = openUrl('http://convert2mp3.net/status.php?id='+vid+'&key='+key+'&cs='+cs+'&time='+str(unixtime()))
+		print ''
 		print('Converting...')
 		time.sleep(1)
 	print 'Downloading...'
@@ -116,14 +117,14 @@ def dlplaylist(args):
 			downloadvideo(entry, str(i+args.startno)+" "+prefix, args.format)
 	return
 
-aparser = argparse.ArgumentParser(description='Download Youtube Videos and Playlists.')
-aparser.add_argument('-f', '--format', type=lambda x: checkFormats(aparser,x), dest='format', action="store", default="mp3", help='Format of the downloaded Videos(see convert2mp3.net)')
-aparser.add_argument('-n', '--name', dest='name', action="store", default="none", help='Name of the downloaded Video without Fileext.')
+aparser = argparse.ArgumentParser(description='Download Youtube Videos and Playlists over convert2mp3.net.')
+aparser.add_argument('-f', '--format', type=lambda x: checkFormats(aparser,x), dest='format', action="store", default="mp3", help='format of the downloaded videos(see convert2mp3.net)')
+aparser.add_argument('-n', '--name', dest='name', action="store", default="none", help='name of the downloaded video without fileextension')
 aparser.add_argument('videourl', metavar='url', action="store", help='URL of the Video or Playlist')
-aparser.add_argument('-pl', '--playlist', dest='playlist', action="store_true", help='Downloads Playlist')
-aparser.add_argument('-no', '--startno', dest='startno', action="store", type=int, default=1, help='Starting Number of Naming, if downloading Playlist')
-aparser.add_argument('-s', '--start', dest='start', action="store", type=int, default=1, help='Starting Number, if downloading Playlist')
-aparser.add_argument('-e', '--end', dest='end', action="store", type=int, default=1000, help='Ending Number, if downloading Playlist')
+aparser.add_argument('-pl', '--playlist', dest='playlist', action="store_true", help='downloads playlist')
+aparser.add_argument('-no', '--startno', dest='startno', action="store", type=int, default=1, help='starting number of naming, if downloading playlist')
+aparser.add_argument('-s', '--start', dest='start', action="store", type=int, default=1, help='starting number, if downloading playlist')
+aparser.add_argument('-e', '--end', dest='end', action="store", type=int, default=1000, help='ending number, if downloading playlist')
 
 args = aparser.parse_args()
 
