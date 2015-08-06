@@ -18,6 +18,6 @@ Argument|Description
 |  -f FORMAT, --format FORMAT    |  format of the downloaded videos(see convert2mp3.net)
 |  -n NAME, --name NAME          |  name of the downloaded video without fileextension
 |  -pl, --playlist               |  downloads playlist
-|  -no STARTNO, --startno STARTNO|  starting number of naming, if downloading Playlist
-|  -s START, --start START       |  starting number, if downloading Playlist
-|  -e END, --end END             |  ending number, if downloading Playlist
+|  -no STARTNO, --startno STARTNO|  starting number of naming, if downloading playlist
+|  -s START, --start START       |  starting number, if downloading playlist
+|  -e END, --end END             |  ending number, if downloading playlist
