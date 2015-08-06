@@ -7,10 +7,12 @@ ytdl.py [-h] [-f FORMAT] [-n NAME] [-pl] [-no STARTNO] [-s START] [-e END] url
 Download Youtube Videos and Playlists.
 
 positional arguments:<br>
+Argument|Description
 -----------------------------------------------------------------------------------------
   url                           | URL of the Video or Playlist
 
 optional arguments:<br>
+Flag|Description
 -----------------------------------------------------------------------------------------
   -h, --help                    |  show this help message and exit<br>
   -f FORMAT, --format FORMAT    |  format of the downloaded videos(see convert2mp3.net)<br>
