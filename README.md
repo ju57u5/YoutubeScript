@@ -21,3 +21,10 @@ Argument|Description
 |  -no STARTNO, --startno STARTNO|  starting number of naming, if downloading playlist
 |  -s START, --start START       |  starting number, if downloading playlist
 |  -e END, --end END             |  ending number, if downloading playlist
+
+
+#Examples
+'''
+ytdl.py -n pietcast -s 5 -e 8 -pl https://www.youtube.com/playlist?list=PL5JK9SjdCJp_oIlCBbnANeOvT8yuCxBbu
+'''
+Downloads videos 5 to 8 from PietCast
