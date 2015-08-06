@@ -15,6 +15,11 @@ def openUrl(url):
 	html = response.read()
 	return html
 
+def update_progress(progress):
+	sys.stdout.write('\r[{0}{1}] {2}'.format('#'*(progress/10), ' '*(10-progress/10), progress))
+	sys.stdout.flush()
+
+
 def unixtime():
 	then = datetime.datetime.now()
 	return int(time.mktime(then.timetuple())*1e3 + then.microsecond/1e3)
@@ -54,7 +59,13 @@ def downloadvideo(url,name,vformat):
 	if not os.path.exists(os.path.dirname(os.path.realpath(__file__))+ "\\download"):
 	    os.makedirs(os.path.dirname(os.path.realpath(__file__))+ "\\download")
 	filename = os.path.dirname(os.path.realpath(__file__))+ "\\download\\" + name +"."+vformat
-	mechanize.urlretrieve(downloadurl, filename)
+
+	def report(count, blockSize, totalSize):
+		if count != 0:
+			progress= int(count*blockSize*100/totalSize)
+			update_progress(progress)
+
+	mechanize.urlretrieve(downloadurl, filename, reporthook=report)
 	return
 
 def getVideoID(url):
