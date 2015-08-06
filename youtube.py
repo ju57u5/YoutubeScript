@@ -101,7 +101,8 @@ def dlplaylist(args):
 		prefix = args.name
 
 	for i,entry in enumerate(plvideos):
-		downloadvideo(entry, str(i+args.startno)+" "+prefix, args.format)
+		if (i+1>=args.start and i+1<=args.end) :
+			downloadvideo(entry, str(i+args.startno)+" "+prefix, args.format)
 	return
 
 aparser = argparse.ArgumentParser(description='Download Youtube Videos and Playlists.')
@@ -109,12 +110,13 @@ aparser.add_argument('-f', '--format', type=lambda x: checkFormats(aparser,x), d
 aparser.add_argument('-n', '--name', dest='name', action="store", default="none", help='Name of the downloaded Video without Fileext.')
 aparser.add_argument('videourl', metavar='url', action="store", help='URL of the Video or Playlist')
 aparser.add_argument('-pl', '--playlist', dest='playlist', action="store_true", help='Downloads Playlist')
-aparser.add_argument('-no', '--startno', dest='startno', action="store", type=int, default=1, help='Starting Number, if downloading Playlist')
+aparser.add_argument('-no', '--startno', dest='startno', action="store", type=int, default=1, help='Starting Number of Naming, if downloading Playlist')
+aparser.add_argument('-s', '--start', dest='start', action="store", type=int, default=1, help='Starting Number, if downloading Playlist')
+aparser.add_argument('-e', '--end', dest='end', action="store", type=int, default=1000, help='Ending Number, if downloading Playlist')
 
 args = aparser.parse_args()
 
 if args.playlist:
-	#print getPlaylistVideos(args.videourl)
 	dlplaylist(args)
 elif (args.name == 'none'):
 	downloadvideo(args.videourl,getVideoID(args.videourl),args.format)
