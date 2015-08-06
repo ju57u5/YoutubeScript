@@ -4,7 +4,7 @@ Commandline Utility for convert2mp3.net
 # Usage
 ytdl.py [-h] [-f FORMAT] [-n NAME] [-pl] [-no STARTNO] [-s START] [-e END] url
 
-Download Youtube Videos and Playlists.
+Download Youtube Videos and Playlists over convert2mp3.net.
 
 ### positional arguments:<br>
 Argument|Description
