@@ -24,7 +24,15 @@ Argument|Description
 
 
 #Examples
-'''
+```
 ytdl.py -n pietcast -s 5 -e 8 -pl https://www.youtube.com/playlist?list=PL5JK9SjdCJp_oIlCBbnANeOvT8yuCxBbu
-'''
-Downloads videos 5 to 8 from PietCast
+```
+Downloads episodes 5 to 8 from "PietCast" and names them <number> pietcast.mp3.
+
+```
+ytdl.py -f mp4 -n ytrewind2008 https://www.youtube.com/watch?v=zKx2B8WCQuw
+```
+Downloads the "YoutubeRewind 2008" and names it ytrewind2008.mp4 
+
+
+All donwloads will be placed at {ScriptDir}/download
