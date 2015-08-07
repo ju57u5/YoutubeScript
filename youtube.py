@@ -1,7 +1,8 @@
 import time
 import datetime
 import cookielib
-import mechanize
+import urllib2
+import wget
 import sys
 import urlparse
 import os
@@ -10,8 +11,8 @@ import re
 
 def openUrl(url):
 	LoginHeader = {"User-Agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2.8) Gecko/20100722 Firefox/3.6.8 GTB7.1 (.NET CLR 3.5.30729)"}
-	req = mechanize.Request(url)
-	response = mechanize.urlopen(req)
+	req = urllib2.Request(url)
+	response = urllib2.urlopen(req)
 	html = response.read()
 	return html
 
@@ -29,7 +30,7 @@ def stringbetween(string,startstr,endstr):
 	end = string.find(endstr,start+len(startstr))
 	return string[start+len(startstr):end]
 
-def downloadvideo(url,name,vformat):
+def downloadvideo(url,name,vformat,path=os.path.dirname(os.path.realpath(__file__))+ "\\download\\"):
 	html = openUrl('http://convert2mp3.net/c-'+vformat+'.php?url='+url)
 	convertbefehl = stringbetween(html,'convert(',');')
 
@@ -56,17 +57,13 @@ def downloadvideo(url,name,vformat):
 	print 'Downloading...'
 	downloadurl='http://cdl'+cs+'.convert2mp3.net/download.php?id='+vid+'&key='+key
 
-	split = urlparse.urlsplit(downloadurl)
-	if not os.path.exists(os.path.dirname(os.path.realpath(__file__))+ "\\download"):
-	    os.makedirs(os.path.dirname(os.path.realpath(__file__))+ "\\download")
-	filename = os.path.dirname(os.path.realpath(__file__))+ "\\download\\" + name +"."+vformat
-
-	def report(count, blockSize, totalSize):
-		if count != 0:
-			progress= int(count*blockSize*100/totalSize)
-			update_progress(progress)
-
-	mechanize.urlretrieve(downloadurl, filename, reporthook=report)
+	if not os.path.exists(path):
+	    os.makedirs(path)
+	if name!='none': 
+		filename = os.path.dirname(os.path.realpath(__file__))+ "\\download\\" + name +"."+vformat
+		wget.download(downloadurl,filename)
+	else :
+		wget.download(downloadurl,path)
 	return
 
 def getVideoID(url):
@@ -130,7 +127,7 @@ args = aparser.parse_args()
 
 if args.playlist:
 	dlplaylist(args)
-elif (args.name == 'none'):
-	downloadvideo(args.videourl,getVideoID(args.videourl),args.format)
+#elif (args.name == 'none'):
+#	downloadvideo(args.videourl,getVideoID(args.videourl),args.format)
 else:
 	downloadvideo(args.videourl,args.name,args.format)
