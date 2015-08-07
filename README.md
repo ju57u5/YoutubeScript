@@ -35,4 +35,4 @@ ytdl.py -f mp4 -n ytrewind2008 https://www.youtube.com/watch?v=zKx2B8WCQuw
 Downloads the "YoutubeRewind 2008" and names it ytrewind2008.mp4 
 
 
-All donwloads will be placed at {ScriptDir}/download
+All downloads will be placed at {ScriptDir}/download
