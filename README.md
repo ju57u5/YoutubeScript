@@ -21,6 +21,7 @@ Argument|Description
 |  -no STARTNO, --startno STARTNO|  starting number of naming, if downloading playlist
 |  -s START, --start START       |  starting number, if downloading playlist
 |  -e END, --end END             |  ending number, if downloading playlist
+|  -o OUT, --output OUT          |  output directory
 
 
 #Examples
@@ -35,7 +36,7 @@ ytdl.py -f mp4 -n ytrewind2008 https://www.youtube.com/watch?v=zKx2B8WCQuw
 Downloads the "YoutubeRewind 2008" and names it ytrewind2008.mp4 
 
 
-All downloads will be placed at {ScriptDir}/download
+All downloads will be placed at {ScriptDir}/download, if no other output directory is set.
 
 #Download
 This script is available as Windows application or source at the [releases page](https://github.com/ju57u5/YoutubeScript/releases).
