@@ -39,7 +39,7 @@ def stringbetween(string,startstr,endstr):
 
 def downloadvideo(url,name,vformat,path=None):
 	if path is None:
-		path = getPath() + "\\download\\"
+		path = os.path.abspath('') + "\\download\\"
 	else:
 		path = os.path.abspath(path)+"\\"
 
