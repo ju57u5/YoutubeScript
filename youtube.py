@@ -37,7 +37,12 @@ def stringbetween(string,startstr,endstr):
 	end = string.find(endstr,start+len(startstr))
 	return string[start+len(startstr):end]
 
-def downloadvideo(url,name,vformat,path=getPath() + "\\download\\"):
+def downloadvideo(url,name,vformat,path=None):
+	if path is None:
+		path = getPath() + "\\download\\"
+	else:
+		path = os.path.abspath(path)+"\\"
+
 	html = openUrl('http://convert2mp3.net/c-'+vformat+'.php?url='+url)
 	convertbefehl = stringbetween(html,'convert(',');')
 
@@ -68,7 +73,7 @@ def downloadvideo(url,name,vformat,path=getPath() + "\\download\\"):
 	if not os.path.exists(path):
 	    os.makedirs(path)
 	if name!='none': 
-		filename = getPath() + "\\download\\" + name +"."+vformat
+		filename = path + name +"."+vformat
 		wget.download(downloadurl,filename)
 	else :
 		wget.download(downloadurl,path)
@@ -120,7 +125,7 @@ def dlplaylist(args):
 
 	for i,entry in enumerate(plvideos):
 		if (i+1>=args.start and i+1<=args.end) :
-			downloadvideo(entry, str(i+args.startno)+" "+prefix, args.format)
+			downloadvideo(entry, str(i+args.startno)+" "+prefix, args.format, args.out)
 	return
 
 aparser = argparse.ArgumentParser(description='Download Youtube Videos and Playlists over convert2mp3.net.')
@@ -131,12 +136,11 @@ aparser.add_argument('-pl', '--playlist', dest='playlist', action="store_true", 
 aparser.add_argument('-no', '--startno', dest='startno', action="store", type=int, default=1, help='starting number of naming, if downloading playlist')
 aparser.add_argument('-s', '--start', dest='start', action="store", type=int, default=1, help='starting number, if downloading playlist')
 aparser.add_argument('-e', '--end', dest='end', action="store", type=int, default=1000, help='ending number, if downloading playlist')
-aparser.add_argument('-o', '--output', dest='out', action="store", help='output file/directory')
-
+aparser.add_argument('-o', '--output', dest='out', action="store", default=None, help='output directory')
 
 args = aparser.parse_args()
 
 if args.playlist:
 	dlplaylist(args)
 else:
-	downloadvideo(args.videourl,args.name,args.format)
+	downloadvideo(args.videourl,args.name,args.format,args.out)
