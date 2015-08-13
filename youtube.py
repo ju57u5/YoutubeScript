@@ -21,7 +21,7 @@ def openUrl(url):
 	req = urllib.request.Request(url)
 	response = urllib.request.urlopen(req)
 	html = response.read()
-	return html
+	return html.decode("utf-8")
 
 def update_progress(progress):
 	sys.stdout.write('\r[{0}{1}] {2}'.format('#'*(progress/10), ' '*(10-progress/10), progress))
@@ -56,6 +56,7 @@ def downloadvideo(url,name,vformat,path=getPath() + "\\download\\"):
 	openUrl(convertframe)
 
 	html2 = '1'
+	#3 means ready to donwload for the website
 	while not "3" in html2 :
 		html2 = openUrl('http://convert2mp3.net/status.php?id='+vid+'&key='+key+'&cs='+cs+'&time='+str(unixtime()))
 		print ("")
@@ -81,9 +82,10 @@ def getVideoID(url):
 		sys.exit(1)
 	video = query["v"][0]
 	return video
+
 def getPlaylistID(url):
-	url_data = urlparse.urlparse(url)
-	query = urlparse.parse_qs(url_data.query)
+	url_data = urlparse(url)
+	query = urllib.parse.parse_qs(url_data.query)
 	plid = query["list"][0]
 	return plid
 
