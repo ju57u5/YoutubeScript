@@ -1,5 +1,5 @@
 # YoutubeScript
-Commandline Utility for convert2mp3.net
+Command line utility for convert2mp3.net
 
 # Usage
 ytdl.py [-h] [-f FORMAT] [-n NAME] [-pl] [-no STARTNO] [-s START] [-e END] url
