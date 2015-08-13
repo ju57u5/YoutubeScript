@@ -2,7 +2,7 @@
 Command line utility for convert2mp3.net
 
 # Usage
-ytdl.py [-h] [-f FORMAT] [-n NAME] [-pl] [-no STARTNO] [-s START] [-e END] url
+ytdl.py [-h] [-f FORMAT] [-n NAME] [-pl] [-no STARTNO] [-s START] [-e END] [-o OUT] url
 
 Download Youtube Videos and Playlists over convert2mp3.net.
 
