@@ -39,9 +39,9 @@ def stringbetween(string,startstr,endstr):
 
 def downloadvideo(url,name,vformat,path=None):
 	if path is None:
-		path = os.path.abspath('') + "\\download\\"
+		path = os.path.join(os.path.abspath('download'),'')
 	else:
-		path = os.path.abspath(path)+"\\"
+		path = os.path.join(os.path.abspath(path),'')
 
 	html = openUrl('http://convert2mp3.net/c-'+vformat+'.php?url='+url)
 	convertbefehl = stringbetween(html,'convert(',');')
