@@ -1,4 +1,6 @@
 # YoutubeScript
+## This wasn't updated in a long time and doesn't work anymore.
+
 Command line utility for convert2mp3.net
 
 # Usage
