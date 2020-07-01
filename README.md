@@ -4,7 +4,9 @@
 Command line utility for convert2mp3.net
 
 # Usage
+```bash
 ytdl.py [-h] [-f FORMAT] [-n NAME] [-pl] [-no STARTNO] [-s START] [-e END] [-o OUT] url
+```
 
 Download Youtube Videos and Playlists over convert2mp3.net.
 
@@ -26,7 +28,7 @@ Argument|Description
 |  -o OUT, --output OUT          |  output directory
 
 
-#Examples
+# Examples
 ```
 ytdl.py -no 24 -n pietcast -s 5 -e 8 -pl https://www.youtube.com/playlist?list=PL5JK9SjdCJp_oIlCBbnANeOvT8yuCxBbu
 ```
