@@ -40,5 +40,5 @@ Downloads the "YoutubeRewind 2008" and names it ytrewind2008.mp4
 
 All downloads will be placed at {ConsoleDir}/download, if no other output directory is set.
 
-#Download
+# Download
 This script is available as Windows application or source at the [releases page](https://github.com/ju57u5/YoutubeScript/releases).
